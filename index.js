@@ -66,6 +66,10 @@ app.post('/addPost', (req, res)=>{
     }
 })
 
+app.get('/health', ()=>{
+    res.sendStatus(200);
+})
+
 app.listen(port, ()=>{
     console.log(`Você se conectou na porta ${port}! 🚀`);
 })
