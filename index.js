@@ -25,8 +25,8 @@ app.get('/getPosts', (req, res)=>{
             connection.query(query, (err, result, fields)=>{
                 //tentar manter o número de mensagens do app em 150 e apagar depois disso
                 try {
-                    if (result.length > 350){
-                        const numToRemove = result.length - 350;
+                    if (result.length > 3500){
+                        const numToRemove = result.length - 3500;
                         for(let i=numToRemove; i>1; i--){
                             const toRemove = result[i-2];
                             connection.query(`DELETE FROM posts WHERE username = '${toRemove.username}'
