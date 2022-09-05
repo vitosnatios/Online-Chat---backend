@@ -26,13 +26,13 @@ app.get('/getPosts', (req, res)=>{
                 //tentar manter o número de mensagens do app em 150 e apagar depois disso
                 try {
                     if (result.length > 3500){
-                        const numToRemove = result.length - 3500;
+                        const numToRemove = 3500 - result.length;
                         for(let i=numToRemove; i>1; i--){
                             const toRemove = result[i-2];
                             connection.query(`DELETE FROM posts WHERE username = '${toRemove.username}'
                             AND imgurl = '${toRemove.imgurl}' 
                             AND content = '${toRemove.content}'
-                            `, (err, result)=>{})
+                            `, (err, remResult)=>{})
                         }
                     }
                     res.json({
@@ -66,7 +66,7 @@ app.post('/addPost', (req, res)=>{
     }
 })
 
-app.get('/health', ()=>{
+app.get('/health', (req, res)=>{
     res.sendStatus(200);
 })
 
