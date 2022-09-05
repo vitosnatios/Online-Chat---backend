@@ -24,23 +24,23 @@ app.get('/getPosts', (req, res)=>{
             const query = "SELECT * FROM posts";
             connection.query(query, (err, result, fields)=>{
                 //tentar manter o número de mensagens do app em 150 e apagar depois disso
-                try {
-                    if (result.length > 3500){
-                        const numToRemove = 3500 - result.length;
-                        for(let i=numToRemove; i>1; i--){
-                            const toRemove = result[i-2];
+                if (result.length > 3500){
+                    const numToRemove = result.length - 3500;
+                    for(let i=numToRemove; i>1; i--){
+                        const toRemove = result[i-2];
+                        try {
                             connection.query(`DELETE FROM posts WHERE username = '${toRemove.username}'
                             AND imgurl = '${toRemove.imgurl}' 
                             AND content = '${toRemove.content}'
                             `, (err, remResult)=>{})
+                        } catch(err){
+                            console.log(err);
                         }
                     }
-                    res.json({
-                        data: result
-                    })
-                } catch(err){
-                    console.log(err);
                 }
+                res.json({
+                    data: result
+                })
             })
         } catch (err) {
             console.log(err);
