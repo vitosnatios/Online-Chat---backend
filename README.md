@@ -3,7 +3,7 @@
 Live app adress: https://vitos-online-chat.netlify.app/ \
 App repo: https://github.com/vitosnatios/Online-Chat-APP 
 
-Live backend adress: https://chat-backend.onrender.com/getPosts \
+Live backend adress: https://online-chat-backend-azure.vercel.app/api/getPosts \
 Backend repo: https://github.com/vitosnatios/Online-Chat---backend 
 
 Just wanted to make a app with a mySql db on the backend.
