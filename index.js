@@ -7,8 +7,10 @@ const PostRoutes = require('./src/routes/PostRoutes');
 
 app.use(cors());
 app.use(express.json());
-app.use('/', new PostRoutes().getRouter());
+app.use('/api/', new PostRoutes().getRouter());
 
 app.listen(port, () => {
   console.log(`Você se conectou na porta ${port}! 🚀`);
 });
+
+module.exports = app;
